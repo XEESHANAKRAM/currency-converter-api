@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <h1 class="text-3xl font-bold text-center text-gray-800">
+                <i class="fas fa-exchange-alt text-blue-600 mr-3"></i>
+                Currency Converter
+            </h1>
+            <p class="text-center text-gray-600 mt-2">Convert currencies with real-time exchange rates</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Converter Card -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8 mb-8">
+            <div class="grid md:grid-cols-3 gap-6 items-end">
+                <!-- From Currency -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">From</label>
+                    <div class="relative">
+                        <select id="fromCurrency" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
+                            <option value="USD">USD - US Dollar</option>
+                            <option value="EUR">EUR - Euro</option>
+                            <option value="GBP">GBP - British Pound</option>
+                            <option value="JPY">JPY - Japanese Yen</option>
+                        </select>
+                    </div>
+                    <input type="number" id="amount" placeholder="Enter amount" class="w-full p-3 mt-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" value="100">
+                </div>
+
+                <!-- Swap Button -->
+                <div class="flex justify-center">
+                    <button id="swapButton" class="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition-all duration-200 transform hover:scale-110 shadow-lg">
+                        <i class="fas fa-exchange-alt text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- To Currency -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">To</label>
+                    <select id="toCurrency" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white">
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="GBP">GBP - British Pound</option>
+                        <option value="JPY">JPY - Japanese Yen</option>
+                    </select>
+                    <div id="result" class="w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-lg font-semibold text-gray-800">
+                        0.00
+                    </div>
+                </div>
+            </div>
+
+            <!-- Convert Button -->
+            <div class="text-center mt-6">
+                <button id="convertButton" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-xl">
+                    <i class="fas fa-calculator mr-2"></i>
+                    Convert Currency
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
