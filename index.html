@@ -1,1 +1,1164 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter API - Complete Project Guide</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .code-block { background: #1f2937; border-radius: 8px; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Header -->
+<div class="gradient-bg text-white py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h1 class="text-5xl font-bold mb-6">
+            <i class="fas fa-exchange-alt mr-4"></i>
+            Currency Converter API
+        </h1>
+        <p class="text-xl opacity-90 mb-8">Complete Project Guide with GoLang Backend, Beautiful UI & AWS Deployment</p>
+        <div class="flex justify-center space-x-8">
+            <div class="text-center">
+                <i class="fab fa-golang text-3xl mb-2"></i>
+                <p class="text-sm">GoLang API</p>
+            </div>
+            <div class="text-center">
+                <i class="fab fa-react text-3xl mb-2"></i>
+                <p class="text-sm">Modern UI</p>
+            </div>
+            <div class="text-center">
+                <i class="fab fa-aws text-3xl mb-2"></i>
+                <p class="text-sm">AWS Deployment</p>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-tools text-3xl mb-2"></i>
+                <p class="text-sm">Terraform</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="max-w-6xl mx-auto px-6 py-12">
+
+<!-- Table of Contents -->
+<div class="bg-white rounded-lg p-8 mb-12 card-shadow">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">
+        <i class="fas fa-list-ul mr-3 text-blue-600"></i>
+        Table of Contents
+    </h2>
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="space-y-3">
+            <a href="#overview" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-info-circle mr-2"></i> Project Overview
+            </a>
+            <a href="#prerequisites" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-check-square mr-2"></i> Prerequisites
+            </a>
+            <a href="#backend" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-server mr-2"></i> GoLang Backend API
+            </a>
+            <a href="#frontend" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-desktop mr-2"></i> Frontend UI
+            </a>
+        </div>
+        <div class="space-y-3">
+            <a href="#terraform" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-cloud mr-2"></i> Terraform Configuration
+            </a>
+            <a href="#deployment" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-rocket mr-2"></i> Deployment Guide
+            </a>
+            <a href="#monitoring" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fas fa-chart-line mr-2"></i> Monitoring & Logs
+            </a>
+            <a href="#github" class="flex items-center text-blue-600 hover:text-blue-800 transition-colors">
+                <i class="fab fa-github mr-2"></i> GitHub Setup
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Project Overview -->
+<section id="overview" class="mb-16">
+    <div class="bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            <i class="fas fa-info-circle mr-3 text-blue-600"></i>
+            Project Overview
+        </h2>
+        
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">What We're Building</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> REST API for currency conversion</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Beautiful, responsive web interface</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> Real-time exchange rates</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> AWS deployment with Docker</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 mr-2"></i> CloudWatch monitoring</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-700">Tech Stack</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center bg-gray-100 p-3 rounded">
+                        <i class="fab fa-golang text-blue-500 mr-3"></i>
+                        <span><strong>Backend:</strong> Go (Golang) with Gin framework</span>
+                    </div>
+                    <div class="flex items-center bg-gray-100 p-3 rounded">
+                        <i class="fab fa-js text-yellow-500 mr-3"></i>
+                        <span><strong>Frontend:</strong> HTML5, CSS3, JavaScript</span>
+                    </div>
+                    <div class="flex items-center bg-gray-100 p-3 rounded">
+                        <i class="fab fa-aws text-orange-500 mr-3"></i>
+                        <span><strong>Deployment:</strong> AWS EC2, Docker, Terraform</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Prerequisites -->
+<section id="prerequisites" class="mb-16">
+    <div class="bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            <i class="fas fa-check-square mr-3 text-green-600"></i>
+            Prerequisites
+        </h2>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold mb-4 text-gray-700">
+                    <i class="fas fa-download mr-2 text-blue-500"></i>
+                    Required Software
+                </h3>
+                <ul class="space-y-2">
+                    <li><i class="fab fa-golang mr-2 text-blue-500"></i> Go 1.19+</li>
+                    <li><i class="fab fa-docker mr-2 text-blue-500"></i> Docker</li>
+                    <li><i class="fas fa-cloud mr-2 text-orange-500"></i> Terraform</li>
+                    <li><i class="fab fa-aws mr-2 text-orange-500"></i> AWS CLI</li>
+                    <li><i class="fab fa-git-alt mr-2 text-red-500"></i> Git</li>
+                </ul>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold mb-4 text-gray-700">
+                    <i class="fas fa-user-graduate mr-2 text-purple-500"></i>
+                    Knowledge Level
+                </h3>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-star text-yellow-400 mr-2"></i> Basic Go syntax</li>
+                    <li><i class="fas fa-star text-yellow-400 mr-2"></i> HTML/CSS basics</li>
+                    <li><i class="fas fa-star text-yellow-400 mr-2"></i> Command line usage</li>
+                    <li><i class="fas fa-star text-gray-300 mr-2"></i> AWS familiarity (helpful)</li>
+                    <li><i class="fas fa-star text-gray-300 mr-2"></i> Docker basics (helpful)</li>
+                </ul>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <h3 class="text-lg font-semibold mb-4 text-gray-700">
+                    <i class="fas fa-key mr-2 text-green-500"></i>
+                    API Keys Needed
+                </h3>
+                <ul class="space-y-2">
+                    <li><i class="fas fa-dollar-sign mr-2 text-green-500"></i> ExchangeRate API key</li>
+                    <li><i class="fab fa-aws mr-2 text-orange-500"></i> AWS Account</li>
+                    <li><i class="fab fa-github mr-2 text-gray-700"></i> GitHub Account</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Backend API -->
+<section id="backend" class="mb-16">
+    <div class="bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            <i class="fas fa-server mr-3 text-purple-600"></i>
+            GoLang Backend API
+        </h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">Project Structure</h3>
+            <div class="code-block text-green-400 p-4 font-mono text-sm">
+currency-converter/<br>
+├── main.go                 # Main application entry point<br>
+├── handlers/              # HTTP request handlers<br>
+│   └── currency.go        # Currency conversion logic<br>
+├── models/                # Data structures<br>
+│   └── response.go        # API response models<br>
+├── services/              # External API services<br>
+│   └── exchange.go        # Exchange rate fetching<br>
+├── middleware/            # HTTP middleware<br>
+│   └── cors.go           # CORS configuration<br>
+├── static/                # Frontend files<br>
+│   ├── index.html        # Main HTML file<br>
+│   ├── style.css         # Styling<br>
+│   └── script.js         # JavaScript logic<br>
+├── Dockerfile            # Docker configuration<br>
+├── docker-compose.yml    # Local development<br>
+├── go.mod               # Go dependencies<br>
+└── README.md            # Documentation
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Main Application (main.go)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">// main.go - Entry point of our application</span><br>
+<span class="text-blue-400">package</span> main<br><br>
+
+<span class="text-blue-400">import</span> (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"log"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"os"</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"github.com/gin-contrib/cors"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"github.com/gin-gonic/gin"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"currency-converter/handlers"</span><br>
+)<br><br>
+
+<span class="text-blue-400">func</span> <span class="text-yellow-300">main</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Create a new Gin router with default middleware</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;r := gin.Default()<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Configure CORS to allow frontend access</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;config := cors.DefaultConfig()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config.AllowOrigins = []<span class="text-blue-400">string</span>{<span class="text-yellow-300">"*"</span>}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;config.AllowMethods = []<span class="text-blue-400">string</span>{<span class="text-yellow-300">"GET"</span>, <span class="text-yellow-300">"POST"</span>, <span class="text-yellow-300">"PUT"</span>, <span class="text-yellow-300">"DELETE"</span>, <span class="text-yellow-300">"OPTIONS"</span>}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.Use(cors.New(config))<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Serve static files (HTML, CSS, JS)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.Static(<span class="text-yellow-300">"/static"</span>, <span class="text-yellow-300">"./static"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;r.StaticFile(<span class="text-yellow-300">"/"</span>, <span class="text-yellow-300">"./static/index.html"</span>)<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// API routes</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;api := r.Group(<span class="text-yellow-300">"/api/v1"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;api.GET(<span class="text-yellow-300">"/convert"</span>, handlers.ConvertCurrency)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;api.GET(<span class="text-yellow-300">"/rates"</span>, handlers.GetExchangeRates)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;api.GET(<span class="text-yellow-300">"/health"</span>, handlers.HealthCheck)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Get port from environment or use default</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;port := os.Getenv(<span class="text-yellow-300">"PORT"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> port == <span class="text-yellow-300">""</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;port = <span class="text-yellow-300">"8080"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;log.Printf(<span class="text-yellow-300">"Server starting on port %s"</span>, port)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err := r.Run(<span class="text-yellow-300">":"</span> + port); err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.Fatal(<span class="text-yellow-300">"Failed to start server:"</span>, err)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">2. Currency Handler (handlers/currency.go)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">// handlers/currency.go - HTTP request handlers</span><br>
+<span class="text-blue-400">package</span> handlers<br><br>
+
+<span class="text-blue-400">import</span> (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"net/http"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"strconv"</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"github.com/gin-gonic/gin"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"currency-converter/services"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"currency-converter/models"</span><br>
+)<br><br>
+
+<span class="text-green-400">// ConvertCurrency handles currency conversion requests</span><br>
+<span class="text-blue-400">func</span> <span class="text-yellow-300">ConvertCurrency</span>(c *gin.Context) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Get query parameters from the request</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;from := c.Query(<span class="text-yellow-300">"from"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;to := c.Query(<span class="text-yellow-300">"to"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;amountStr := c.Query(<span class="text-yellow-300">"amount"</span>)<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Validate required parameters</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> from == <span class="text-yellow-300">""</span> || to == <span class="text-yellow-300">""</span> || amountStr == <span class="text-yellow-300">""</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusBadRequest, models.ErrorResponse{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error: <span class="text-yellow-300">"Missing required parameters: from, to, amount"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Convert amount to float</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;amount, err := strconv.ParseFloat(amountStr, 64)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusBadRequest, models.ErrorResponse{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error: <span class="text-yellow-300">"Invalid amount format"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Get exchange rate from external service</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;rate, err := services.GetExchangeRate(from, to)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusInternalServerError, models.ErrorResponse{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error: <span class="text-yellow-300">"Failed to get exchange rate: "</span> + err.Error(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Calculate converted amount</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;convertedAmount := amount * rate<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Return successful response</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusOK, models.ConversionResponse{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;From:            from,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To:              to,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount:          amount,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ConvertedAmount: convertedAmount,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExchangeRate:    rate,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Success:         <span class="text-blue-400">true</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+}<br><br>
+
+<span class="text-green-400">// GetExchangeRates returns available exchange rates</span><br>
+<span class="text-blue-400">func</span> <span class="text-yellow-300">GetExchangeRates</span>(c *gin.Context) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;base := c.DefaultQuery(<span class="text-yellow-300">"base"</span>, <span class="text-yellow-300">"USD"</span>)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;rates, err := services.GetAllRates(base)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusInternalServerError, models.ErrorResponse{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Error: err.Error(),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusOK, rates)<br>
+}<br><br>
+
+<span class="text-green-400">// HealthCheck provides API health status</span><br>
+<span class="text-blue-400">func</span> <span class="text-yellow-300">HealthCheck</span>(c *gin.Context) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c.JSON(http.StatusOK, gin.H{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"status"</span>: <span class="text-yellow-300">"healthy"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"message"</span>: <span class="text-yellow-300">"Currency Converter API is running"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;})<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">3. Data Models (models/response.go)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">// models/response.go - API response structures</span><br>
+<span class="text-blue-400">package</span> models<br><br>
+
+<span class="text-green-400">// ConversionResponse represents a successful currency conversion</span><br>
+<span class="text-blue-400">type</span> ConversionResponse <span class="text-blue-400">struct</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;From            <span class="text-blue-400">string</span>  `json:"from"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;To              <span class="text-blue-400">string</span>  `json:"to"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Amount          <span class="text-blue-400">float64</span> `json:"amount"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ConvertedAmount <span class="text-blue-400">float64</span> `json:"converted_amount"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ExchangeRate    <span class="text-blue-400">float64</span> `json:"exchange_rate"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success         <span class="text-blue-400">bool</span>   `json:"success"`<br>
+}<br><br>
+
+<span class="text-green-400">// ErrorResponse represents an API error</span><br>
+<span class="text-blue-400">type</span> ErrorResponse <span class="text-blue-400">struct</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Error   <span class="text-blue-400">string</span> `json:"error"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success <span class="text-blue-400">bool</span>   `json:"success" default:"false"`<br>
+}<br><br>
+
+<span class="text-green-400">// ExchangeRateResponse represents exchange rate data</span><br>
+<span class="text-blue-400">type</span> ExchangeRateResponse <span class="text-blue-400">struct</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Base    <span class="text-blue-400">string</span>             `json:"base"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Rates   <span class="text-blue-400">map[string]float64</span> `json:"rates"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Success <span class="text-blue-400">bool</span>               `json:"success"`<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">4. Exchange Rate Service (services/exchange.go)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">// services/exchange.go - External API integration</span><br>
+<span class="text-blue-400">package</span> services<br><br>
+
+<span class="text-blue-400">import</span> (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"encoding/json"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"fmt"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"net/http"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"os"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"time"</span><br>
+)<br><br>
+
+<span class="text-blue-400">const</span> (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;exchangeAPIURL = <span class="text-yellow-300">"https://api.exchangerate-api.com/v4/latest/"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;timeout        = 10 * time.Second<br>
+)<br><br>
+
+<span class="text-green-400">// ExchangeAPIResponse represents the external API response</span><br>
+<span class="text-blue-400">type</span> ExchangeAPIResponse <span class="text-blue-400">struct</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Base  <span class="text-blue-400">string</span>             `json:"base"`<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Rates <span class="text-blue-400">map[string]float64</span> `json:"rates"`<br>
+}<br><br>
+
+<span class="text-green-400">// GetExchangeRate fetches conversion rate between two currencies</span><br>
+<span class="text-blue-400">func</span> <span class="text-yellow-300">GetExchangeRate</span>(from, to <span class="text-blue-400">string</span>) (<span class="text-blue-400">float64</span>, <span class="text-blue-400">error</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Create HTTP client with timeout</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;client := &http.Client{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Timeout: timeout,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Build API URL</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;url := exchangeAPIURL + from<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> apiKey := os.Getenv(<span class="text-yellow-300">"EXCHANGE_API_KEY"</span>); apiKey != <span class="text-yellow-300">""</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;url += <span class="text-yellow-300">"?access_key="</span> + apiKey<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Make HTTP request</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;resp, err := client.Get(url)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> 0, fmt.Errorf(<span class="text-yellow-300">"failed to fetch exchange rate: %w"</span>, err)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">defer</span> resp.Body.Close()<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Check HTTP status</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> resp.StatusCode != http.StatusOK {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> 0, fmt.Errorf(<span class="text-yellow-300">"API returned status %d"</span>, resp.StatusCode)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Parse JSON response</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">var</span> result ExchangeAPIResponse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-4004">if</span> err := json.NewDecoder(resp.Body).Decode(&result); err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> 0, fmt.Errorf(<span class="text-yellow-300">"failed to parse API response: %w"</span>, err)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Get conversion rate</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;rate, exists := result.Rates[to]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> !exists {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> 0, fmt.Errorf(<span class="text-yellow-300">"currency %s not found"</span>, to)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> rate, <span class="text-blue-400">nil</span><br>
+}<br><br>
+
+<span class="text-green-400">// GetAllRates fetches all available exchange rates for a base currency</span><br>
+<span class="text-blue-400">func</span> <span class="text-yellow-300">GetAllRates</span>(base <span class="text-blue-400">string</span>) (*ExchangeAPIResponse, <span class="text-blue-400">error</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;client := &http.Client{Timeout: timeout}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;url := exchangeAPIURL + base<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;resp, err := client.Get(url)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> err != <span class="text-blue-400">nil</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> <span class="text-blue-400">nil</span>, err<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">defer</span> resp.Body.Close()<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">var</span> result ExchangeAPIResponse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;err = json.NewDecoder(resp.Body).Decode(&result)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span> &result, err<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">5. Go Dependencies (go.mod)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm">
+<span class="text-green-400">// go.mod - Go module dependencies</span><br>
+<span class="text-blue-400">module</span> currency-converter<br><br>
+
+go 1.19<br><br>
+
+<span class="text-blue-400">require</span> (<br>
+&nbsp;&nbsp;&nbsp;&nbsp;github.com/gin-contrib/cors v1.4.0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;github.com/gin-gonic/gin v1.9.1<br>
+)
+            </div>
+        </div>
+
+        <div class="bg-green-50 border-l-4 border-green-400 p-6 rounded">
+            <h4 class="text-lg font-semibold text-green-800 mb-2">
+                <i class="fas fa-info-circle mr-2"></i>
+                Understanding the Backend Structure
+            </h4>
+            <div class="text-green-700 space-y-2">
+                <p><strong>main.go:</strong> Entry point that sets up the web server and routes</p>
+                <p><strong>handlers/:</strong> Functions that handle HTTP requests and responses</p>
+                <p><strong>models/:</strong> Data structures for API requests and responses</p>
+                <p><strong>services/:</strong> Business logic and external API integration</p>
+                <p><strong>Static files:</strong> Frontend HTML, CSS, and JavaScript served by the API</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Frontend UI -->
+<section id="frontend" class="mb-16">
+    <div class="bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            <i class="fas fa-desktop mr-3 text-pink-600"></i>
+            Beautiful Frontend UI
+        </h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">1. HTML Structure (static/index.html)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-blue-400">&lt;!DOCTYPE html&gt;</span><br>
+<span class="text-red-400">&lt;html</span> <span class="text-yellow-300">lang=</span><span class="text-green-400">"en"</span><span class="text-red-400">&gt;</span><br>
+<span class="text-red-400">&lt;head&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;meta</span> <span class="text-yellow-300">charset=</span><span class="text-green-400">"UTF-8"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;meta</span> <span class="text-yellow-300">name=</span><span class="text-green-400">"viewport"</span> <span class="text-yellow-300">content=</span><span class="text-green-400">"width=device-width, initial-scale=1.0"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;title&gt;</span>Currency Converter<span class="text-red-400">&lt;/title&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;link</span> <span class="text-yellow-300">href=</span><span class="text-green-400">"https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"</span> <span class="text-yellow-300">rel=</span><span class="text-green-400">"stylesheet"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;link</span> <span class="text-yellow-300">rel=</span><span class="text-green-400">"stylesheet"</span> <span class="text-yellow-300">href=</span><span class="text-green-400">"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;link</span> <span class="text-yellow-300">rel=</span><span class="text-green-400">"stylesheet"</span> <span class="text-yellow-300">href=</span><span class="text-green-400">"/static/style.css"</span><span class="text-red-400">&gt;</span><br>
+<span class="text-red-400">&lt;/head&gt;</span><br>
+<span class="text-red-400">&lt;body</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- Header --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;header</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"bg-white shadow-lg"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"max-w-7xl mx-auto px-4 py-6"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;h1</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"text-3xl font-bold text-center text-gray-800"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;i</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"fas fa-exchange-alt text-blue-600 mr-3"</span><span class="text-red-400">&gt;&lt;/i&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Currency Converter<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/h1&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;p</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"text-center text-gray-600 mt-2"</span><span class="text-red-400">&gt;</span>Convert currencies with real-time exchange rates<span class="text-red-400">&lt;/p&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/header&gt;</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- Main Content --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;main</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"max-w-4xl mx-auto px-4 py-8"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- Converter Card --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"bg-white rounded-2xl shadow-2xl p-8 mb-8"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"grid md:grid-cols-3 gap-6 items-end"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- From Currency --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;label</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"block text-sm font-medium text-gray-700 mb-2"</span><span class="text-red-400">&gt;</span>From<span class="text-red-400">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"relative"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;select</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"fromCurrency"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"USD"</span><span class="text-red-400">&gt;</span>USD - US Dollar<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"EUR"</span><span class="text-red-400">&gt;</span>EUR - Euro<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"GBP"</span><span class="text-red-400">&gt;</span>GBP - British Pound<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"JPY"</span><span class="text-red-400">&gt;</span>JPY - Japanese Yen<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/select&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;input</span> <span class="text-yellow-300">type=</span><span class="text-green-400">"number"</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"amount"</span> <span class="text-yellow-300">placeholder=</span><span class="text-green-400">"Enter amount"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"w-full p-3 mt-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"100"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- Swap Button --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"flex justify-center"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;button</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"swapButton"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full transition-all duration-200 transform hover:scale-110 shadow-lg"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;i</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"fas fa-exchange-alt text-xl"</span><span class="text-red-400">&gt;&lt;/i&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- To Currency --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;label</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"block text-sm font-medium text-gray-700 mb-2"</span><span class="text-red-400">&gt;</span>To<span class="text-red-400">&lt;/label&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;select</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"toCurrency"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none bg-white"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"EUR"</span><span class="text-red-400">&gt;</span>EUR - Euro<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"USD"</span><span class="text-red-400">&gt;</span>USD - US Dollar<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"GBP"</span><span class="text-red-400">&gt;</span>GBP - British Pound<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;option</span> <span class="text-yellow-300">value=</span><span class="text-green-400">"JPY"</span><span class="text-red-400">&gt;</span>JPY - Japanese Yen<span class="text-red-400">&lt;/option&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/select&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"result"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"w-full p-3 mt-2 bg-gray-100 border-2 border-gray-300 rounded-lg text-lg font-semibold text-gray-800"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.00<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">&lt;!-- Convert Button --&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;div</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"text-center mt-6"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;button</span> <span class="text-yellow-300">id=</span><span class="text-green-400">"convertButton"</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-xl"</span><span class="text-red-400">&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;i</span> <span class="text-yellow-300">class=</span><span class="text-green-400">"fas fa-calculator mr-2"</span><span class="text-red-400">&gt;&lt;/i&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convert Currency<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/button&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/div&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;/main&gt;</span><br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-red-400">&lt;script</span> <span class="text-yellow-300">src=</span><span class="text-green-400">"/static/script.js"</span><span class="text-red-400">&gt;&lt;/script&gt;</span><br>
+<span class="text-red-400">&lt;/body&gt;</span><br>
+<span class="text-red-400">&lt;/html&gt;</span>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">2. Custom Styles (static/style.css)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">/* static/style.css - Custom styling */</span><br>
+<span class="text-blue-400">body</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">font-family</span>: <span class="text-green-400">'Inter', sans-serif</span>;<br>
+}<br><br>
+
+<span class="text-green-400">/* Loading spinner */</span><br>
+<span class="text-blue-400">.loading</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">display</span>: <span class="text-green-400">inline-block</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">width</span>: <span class="text-green-400">20px</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">height</span>: <span class="text-green-400">20px</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">border</span>: <span class="text-green-400">3px solid rgba(255,255,255,.3)</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">border-radius</span>: <span class="text-green-400">50%</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">border-top-color</span>: <span class="text-green-400">#fff</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">animation</span>: <span class="text-green-400">spin 1s ease-in-out infinite</span>;<br>
+}<br><br>
+
+<span class="text-blue-400">@keyframes</span> <span class="text-yellow-300">spin</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">to</span> { <span class="text-yellow-300">transform</span>: <span class="text-green-400">rotate(360deg)</span>; }<br>
+}<br><br>
+
+<span class="text-green-400">/* Success animation */</span><br>
+<span class="text-blue-400">.success-animation</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">animation</span>: <span class="text-green-400">pulse 0.5s ease-in-out</span>;<br>
+}<br><br>
+
+<span class="text-blue-400">@keyframes</span> <span class="text-yellow-300">pulse</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">0%</span> { <span class="text-yellow-300">transform</span>: <span class="text-green-400">scale(1)</span>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">50%</span> { <span class="text-yellow-300">transform</span>: <span class="text-green-400">scale(1.05)</span>; }<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">100%</span> { <span class="text-yellow-300">transform</span>: <span class="text-green-400">scale(1)</span>; }<br>
+}<br><br>
+
+<span class="text-green-400">/* Error state */</span><br>
+<span class="text-blue-400">.error</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">border-color</span>: <span class="text-green-400">#ef4444 !important</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">background-color</span>: <span class="text-green-400">#fef2f2</span>;<br>
+}<br><br>
+
+<span class="text-green-400">/* Responsive design */</span><br>
+<span class="text-blue-400">@media</span> <span class="text-yellow-300">(max-width: 768px)</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">.grid</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">grid-template-columns</span>: <span class="text-green-400">1fr</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">gap</span>: <span class="text-green-400">1rem</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">3. JavaScript Logic (static/script.js)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">// static/script.js - Frontend JavaScript logic</span><br><br>
+
+<span class="text-green-400">// DOM elements</span><br>
+<span class="text-blue-400">const</span> fromCurrency = document.getElementById(<span class="text-yellow-300">'fromCurrency'</span>);<br>
+<span class="text-blue-400">const</span> toCurrency = document.getElementById(<span class="text-yellow-300">'toCurrency'</span>);<br>
+<span class="text-blue-400">const</span> amount = document.getElementById(<span class="text-yellow-300">'amount'</span>);<br>
+<span class="text-blue-400">const</span> result = document.getElementById(<span class="text-yellow-300">'result'</span>);<br>
+<span class="text-blue-400">const</span> convertButton = document.getElementById(<span class="text-yellow-300">'convertButton'</span>);<br>
+<span class="text-blue-400">const</span> swapButton = document.getElementById(<span class="text-yellow-300">'swapButton'</span>);<br><br>
+
+<span class="text-green-400">// API base URL (adjust for your deployment)</span><br>
+<span class="text-blue-400">const</span> API_BASE = <span class="text-yellow-300">'/api/v1'</span>;<br><br>
+
+<span class="text-green-400">// Convert currency function</span><br>
+<span class="text-blue-400">async function</span> <span class="text-yellow-300">convertCurrency</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> fromValue = fromCurrency.value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> toValue = toCurrency.value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> amountValue = parseFloat(amount.value);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Validation</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (!amountValue || amountValue &lt;= 0) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showError(<span class="text-yellow-300">'Please enter a valid amount'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (fromValue === toValue) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.textContent = amountValue.toFixed(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">return</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Show loading state</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;setLoadingState(<span class="text-blue-400">true</span>);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">try</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Make API request</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> fetch(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">`${API_BASE}/convert?from=${fromValue}&to=${toValue}&amount=${amountValue}`</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (!response.ok) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">throw new</span> Error(<span class="text-yellow-300">`HTTP error! status: ${response.status}`</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> data = <span class="text-blue-400">await</span> response.json();<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (data.success) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Display result with animation</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.textContent = data.converted_amount.toFixed(2);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.classList.add(<span class="text-yellow-300">'success-animation'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result.classList.remove(<span class="text-yellow-300">'success-animation'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}, 500);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Show exchange rate info</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showSuccessMessage(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">`1 ${fromValue} = ${data.exchange_rate.toFixed(4)} ${toValue}`</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <span class="text-blue-400">else</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showError(data.error || <span class="text-yellow-300">'Conversion failed'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="text-blue-400">catch</span> (error) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.error(<span class="text-yellow-300">'Conversion error:'</span>, error);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;showError(<span class="text-yellow-300">'Failed to convert currency. Please try again.'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="text-blue-400">finally</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setLoadingState(<span class="text-blue-400">false</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400">// Swap currencies function</span><br>
+<span class="text-blue-400">function</span> <span class="text-yellow-300">swapCurrencies</span>() {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> temp = fromCurrency.value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fromCurrency.value = toCurrency.value;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;toCurrency.value = temp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Add swap animation</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;swapButton.style.transform = <span class="text-yellow-300">'rotate(180deg)'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;swapButton.style.transform = <span class="text-yellow-300">'rotate(0deg)'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}, 300);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Auto-convert after swap</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (amount.value) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertCurrency();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400">// UI helper functions</span><br>
+<span class="text-blue-400">function</span> <span class="text-yellow-300">setLoadingState</span>(loading) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (loading) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertButton.innerHTML = <span class="text-yellow-300">'&lt;span class="loading"&gt;&lt;/span&gt; Converting...'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertButton.disabled = <span class="text-blue-400">true</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;} <span class="text-blue-400">else</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertButton.innerHTML = <span class="text-yellow-300">'&lt;i class="fas fa-calculator mr-2"&gt;&lt;/i&gt; Convert Currency'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertButton.disabled = <span class="text-blue-400">false</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-blue-400">function</span> <span class="text-yellow-300">showError</span>(message) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-green-400">// Create and show error notification</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> errorDiv = document.createElement(<span class="text-yellow-300">'div'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errorDiv.className = <span class="text-yellow-300">'fixed top-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg z-50'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;errorDiv.innerHTML = <span class="text-yellow-300">`&lt;i class="fas fa-exclamation-circle mr-2"&gt;&lt;/i&gt; ${message}`</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;document.body.appendChild(errorDiv);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;errorDiv.remove();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}, 3000);<br>
+}<br><br>
+
+<span class="text-blue-400">function</span> <span class="text-yellow-300">showSuccessMessage</span>(message) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">const</span> successDiv = document.createElement(<span class="text-yellow-300">'div'</span>);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;successDiv.className = <span class="text-yellow-300">'fixed top-4 right-4 bg-green-500 text-white p-4 rounded-lg shadow-lg z-50'</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;successDiv.innerHTML = <span class="text-yellow-300">`&lt;i class="fas fa-check-circle mr-2"&gt;&lt;/i&gt; ${message}`</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;document.body.appendChild(successDiv);<br><br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(() => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;successDiv.remove();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}, 3000);<br>
+}<br><br>
+
+<span class="text-green-400">// Event listeners</span><br>
+convertButton.addEventListener(<span class="text-yellow-300">'click'</span>, convertCurrency);<br>
+swapButton.addEventListener(<span class="text-yellow-300">'click'</span>, swapCurrencies);<br>
+amount.addEventListener(<span class="text-yellow-300">'input'</span>, convertCurrency);<br>
+fromCurrency.addEventListener(<span class="text-yellow-300">'change'</span>, convertCurrency);<br>
+toCurrency.addEventListener(<span class="text-yellow-300">'change'</span>, convertCurrency);<br><br>
+
+<span class="text-green-400">// Initial conversion on page load</span><br>
+document.addEventListener(<span class="text-yellow-300">'DOMContentLoaded'</span>, () => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">if</span> (amount.value) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;convertCurrency();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+});
+            </div>
+        </div>
+
+        <div class="bg-pink-50 border-l-4 border-pink-400 p-6 rounded">
+            <h4 class="text-lg font-semibold text-pink-800 mb-2">
+                <i class="fas fa-palette mr-2"></i>
+                UI/UX Features Explained
+            </h4>
+            <div class="text-pink-700 space-y-2">
+                <p><strong>Responsive Design:</strong> Works beautifully on desktop, tablet, and mobile devices</p>
+                <p><strong>Real-time Conversion:</strong> Updates results as you type or change currencies</p>
+                <p><strong>Smooth Animations:</strong> Loading states, success feedback, and button interactions</p>
+                <p><strong>Error Handling:</strong> Clear error messages with visual feedback</p>
+                <p><strong>Accessibility:</strong> Proper labels, keyboard navigation, and screen reader support</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terraform Configuration -->
+<section id="terraform" class="mb-16">
+    <div class="bg-white rounded-lg p-8 card-shadow">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">
+            <i class="fas fa-cloud mr-3 text-orange-600"></i>
+            Terraform AWS Configuration
+        </h2>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Main Infrastructure (main.tf)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400"># main.tf - Main Terraform configuration</span><br><br>
+
+<span class="text-blue-400">terraform</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">required_version</span> = <span class="text-green-400">">= 1.0"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">required_providers</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">aws</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">source</span>  = <span class="text-green-400">"hashicorp/aws"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">version</span> = <span class="text-green-400">"~> 5.0"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Configure AWS Provider</span><br>
+<span class="text-blue-400">provider</span> <span class="text-yellow-300">"aws"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">region</span> = <span class="text-blue-400">var</span>.aws_region<br>
+}<br><br>
+
+<span class="text-green-400"># Data source for latest Amazon Linux 2 AMI</span><br>
+<span class="text-blue-400">data</span> <span class="text-yellow-300">"aws_ami"</span> <span class="text-yellow-300">"amazon_linux"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">most_recent</span> = <span class="text-blue-400">true</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">owners</span>      = [<span class="text-green-400">"amazon"</span>]<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">filter</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">name</span>   = <span class="text-green-400">"name"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">values</span> = [<span class="text-green-400">"amzn2-ami-hvm-*-x86_64-gp2"</span>]<br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Create VPC</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_vpc"</span> <span class="text-yellow-300">"main"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">cidr_block</span>           = <span class="text-green-400">"10.0.0.0/16"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">enable_dns_hostnames</span> = <span class="text-blue-400">true</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">enable_dns_support</span>   = <span class="text-blue-400">true</span><br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-vpc"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Internet Gateway</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_internet_gateway"</span> <span class="text-yellow-300">"main"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">vpc_id</span> = <span class="text-blue-400">aws_vpc</span>.main.id<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-igw"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Public Subnet</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_subnet"</span> <span class="text-yellow-300">"public"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">vpc_id</span>                  = <span class="text-blue-400">aws_vpc</span>.main.id<br>
+&nbsp;&nbsp;<span class="text-yellow-300">cidr_block</span>              = <span class="text-green-400">"10.0.1.0/24"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">availability_zone</span>       = <span class="text-green-400">"${var.aws_region}a"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">map_public_ip_on_launch</span> = <span class="text-blue-400">true</span><br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-public-subnet"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Route Table</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_route_table"</span> <span class="text-yellow-300">"public"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">vpc_id</span> = <span class="text-blue-400">aws_vpc</span>.main.id<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">route</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">cidr_block</span> = <span class="text-green-400">"0.0.0.0/0"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">gateway_id</span> = <span class="text-blue-400">aws_internet_gateway</span>.main.id<br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-public-rt"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_route_table_association"</span> <span class="text-yellow-300">"public"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">subnet_id</span>      = <span class="text-blue-400">aws_subnet</span>.public.id<br>
+&nbsp;&nbsp;<span class="text-yellow-300">route_table_id</span> = <span class="text-blue-400">aws_route_table</span>.public.id<br>
+}<br><br>
+
+<span class="text-green-400"># Security Group</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_security_group"</span> <span class="text-yellow-300">"web"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">name_prefix</span> = <span class="text-green-400">"currency-converter-"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">vpc_id</span>      = <span class="text-blue-400">aws_vpc</span>.main.id<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">ingress</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">from_port</span>   = 80<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">to_port</span>     = 80<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">protocol</span>    = <span class="text-green-400">"tcp"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">cidr_blocks</span> = [<span class="text-green-400">"0.0.0.0/0"</span>]<br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">ingress</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">from_port</span>   = 443<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">to_port</span>     = 443<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">protocol</span>    = <span class="text-green-400">"tcp"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">cidr_blocks</span> = [<span class="text-green-400">"0.0.0.0/0"</span>]<br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">ingress</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">from_port</span>   = 22<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">to_port</span>     = 22<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">protocol</span>    = <span class="text-green-400">"tcp"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">cidr_blocks</span> = [<span class="text-blue-400">var</span>.allowed_cidr]<br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">egress</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">from_port</span>   = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">to_port</span>     = 0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">protocol</span>    = <span class="text-green-400">"-1"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">cidr_blocks</span> = [<span class="text-green-400">"0.0.0.0/0"</span>]<br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-sg"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># IAM Role for EC2 CloudWatch</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_iam_role"</span> <span class="text-yellow-300">"ec2_cloudwatch"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">name</span> = <span class="text-green-400">"currency-converter-ec2-cloudwatch"</span><br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">assume_role_policy</span> = <span class="text-blue-400">jsonencode</span>({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Version</span> = <span class="text-green-400">"2012-10-17"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Statement</span> = [{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Action</span> = <span class="text-green-400">"sts:AssumeRole"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Effect</span> = <span class="text-green-400">"Allow"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Principal</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Service</span> = <span class="text-green-400">"ec2.amazonaws.com"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}]<br>
+&nbsp;&nbsp;})<br>
+}<br><br>
+
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_iam_role_policy_attachment"</span> <span class="text-yellow-300">"cloudwatch_agent"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">role</span>       = <span class="text-blue-400">aws_iam_role</span>.ec2_cloudwatch.name<br>
+&nbsp;&nbsp;<span class="text-yellow-300">policy_arn</span> = <span class="text-green-400">"arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"</span><br>
+}<br><br>
+
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_iam_instance_profile"</span> <span class="text-yellow-300">"ec2_profile"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">name</span> = <span class="text-green-400">"currency-converter-ec2-profile"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">role</span> = <span class="text-blue-400">aws_iam_role</span>.ec2_cloudwatch.name<br>
+}
+            </div>
+        </div>
+        
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">2. EC2 Instance Configuration (ec2.tf)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400"># ec2.tf - EC2 instance configuration</span><br><br>
+
+<span class="text-green-400"># Key Pair for SSH access</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_key_pair"</span> <span class="text-yellow-300">"main"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">key_name</span>   = <span class="text-green-400">"currency-converter-key"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">public_key</span> = <span class="text-blue-400">file</span>(<span class="text-blue-400">var</span>.public_key_path)<br>
+}<br><br>
+
+<span class="text-green-400"># User data script for Docker installation and app deployment</span><br>
+<span class="text-blue-400">locals</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">user_data</span> = <span class="text-blue-400">base64encode</span>(<span class="text-blue-400">templatefile</span>(<span class="text-green-400">"${path.module}/user-data.sh"</span>, {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">exchange_api_key</span> = <span class="text-blue-400">var</span>.exchange_api_key<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">github_repo</span>      = <span class="text-blue-400">var</span>.github_repo<br>
+&nbsp;&nbsp;}))<br>
+}<br><br>
+
+<span class="text-green-400"># EC2 Instance</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_instance"</span> <span class="text-yellow-300">"web"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">ami</span>                     = <span class="text-blue-400">data</span>.aws_ami.amazon_linux.id<br>
+&nbsp;&nbsp;<span class="text-yellow-300">instance_type</span>           = <span class="text-blue-400">var</span>.instance_type<br>
+&nbsp;&nbsp;<span class="text-yellow-300">key_name</span>                = <span class="text-blue-400">aws_key_pair</span>.main.key_name<br>
+&nbsp;&nbsp;<span class="text-yellow-300">vpc_security_group_ids</span>  = [<span class="text-blue-400">aws_security_group</span>.web.id]<br>
+&nbsp;&nbsp;<span class="text-yellow-300">subnet_id</span>               = <span class="text-blue-400">aws_subnet</span>.public.id<br>
+&nbsp;&nbsp;<span class="text-yellow-300">iam_instance_profile</span>    = <span class="text-blue-400">aws_iam_instance_profile</span>.ec2_profile.name<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">user_data_base64</span> = <span class="text-blue-400">local</span>.user_data<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">root_block_device</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">volume_type</span> = <span class="text-green-400">"gp3"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">volume_size</span> = 20<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">encrypted</span>   = <span class="text-blue-400">true</span><br>
+&nbsp;&nbsp;}<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span>        = <span class="text-green-400">"currency-converter-web"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Environment</span> = <span class="text-blue-400">var</span>.environment<br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Elastic IP</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_eip"</span> <span class="text-yellow-300">"web"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">domain</span>   = <span class="text-green-400">"vpc"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">instance</span> = <span class="text-blue-400">aws_instance</span>.web.id<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-eip"</span><br>
+&nbsp;&nbsp;}<br>
+}<br><br>
+
+<span class="text-green-400"># Application Load Balancer (optional for production)</span><br>
+<span class="text-blue-400">resource</span> <span class="text-yellow-300">"aws_lb"</span> <span class="text-yellow-300">"main"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">name</span>               = <span class="text-green-400">"currency-converter-alb"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">internal</span>           = <span class="text-blue-400">false</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">load_balancer_type</span> = <span class="text-green-400">"application"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">security_groups</span>    = [<span class="text-blue-400">aws_security_group</span>.web.id]<br>
+&nbsp;&nbsp;<span class="text-yellow-300">subnets</span>            = [<span class="text-blue-400">aws_subnet</span>.public.id]<br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">enable_deletion_protection</span> = <span class="text-blue-400">false</span><br><br>
+
+&nbsp;&nbsp;<span class="text-yellow-300">tags</span> = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">Name</span> = <span class="text-green-400">"currency-converter-alb"</span><br>
+&nbsp;&nbsp;}<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">3. Variables (variables.tf)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400"># variables.tf - Input variables</span><br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"aws_region"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"AWS region for resources"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"us-east-1"</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"instance_type"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"EC2 instance type"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"t3.micro"</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"environment"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"Environment name"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"production"</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"public_key_path"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"Path to public SSH key"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"~/.ssh/id_rsa.pub"</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"allowed_cidr"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"CIDR block allowed for SSH access"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"0.0.0.0/0"</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"exchange_api_key"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"API key for exchange rate service"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">sensitive</span>   = <span class="text-blue-400">true</span><br>
+}<br><br>
+
+<span class="text-blue-400">variable</span> <span class="text-yellow-300">"github_repo"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"GitHub repository URL"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">type</span>        = <span class="text-blue-400">string</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">default</span>     = <span class="text-green-400">"https://github.com/yourusername/currency-converter.git"</span><br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">4. Outputs (outputs.tf)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400"># outputs.tf - Output values</span><br><br>
+
+<span class="text-blue-400">output</span> <span class="text-yellow-300">"public_ip"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"Public IP address of the web server"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">value</span>       = <span class="text-blue-400">aws_eip</span>.web.public_ip<br>
+}<br><br>
+
+<span class="text-blue-400">output</span> <span class="text-yellow-300">"public_dns"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"Public DNS name of the web server"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">value</span>       = <span class="text-blue-400">aws_instance</span>.web.public_dns<br>
+}<br><br>
+
+<span class="text-blue-400">output</span> <span class="text-yellow-300">"application_url"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"URL to access the application"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">value</span>       = <span class="text-green-400">"http://${aws_eip.web.public_ip}"</span><br>
+}<br><br>
+
+<span class="text-blue-400">output</span> <span class="text-yellow-300">"ssh_command"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"SSH command to connect to the instance"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">value</span>       = <span class="text-green-400">"ssh -i ~/.ssh/id_rsa ec2-user@${aws_eip.web.public_ip}"</span><br>
+}<br><br>
+
+<span class="text-blue-400">output</span> <span class="text-yellow-300">"instance_id"</span> {<br>
+&nbsp;&nbsp;<span class="text-yellow-300">description</span> = <span class="text-green-400">"ID of the EC2 instance"</span><br>
+&nbsp;&nbsp;<span class="text-yellow-300">value</span>       = <span class="text-blue-400">aws_instance</span>.web.id<br>
+}
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-gray-700">5. User Data Script (user-data.sh)</h3>
+            <div class="code-block text-gray-100 p-4 font-mono text-sm overflow-x-auto">
+<span class="text-green-400">#!/bin/bash</span><br>
+<span class="text-green-400"># user-data.sh - Script to set up the server</span><br><br>
+
+<span class="text-blue-400">set</span> -e<br><br>
+
+<span class="text-green-400"># Update system</span><br>
+yum update -y<br><br>
+
+<span class="text-green-400"># Install Docker</span><br>
+yum install -y docker<br>
+systemctl start docker<br>
+systemctl enable docker<br>
+usermod -a -G docker ec2-user<br><br>
+
+<span class="text-green-400"># Install Docker Compose</span><br>
+curl -L <span class="text-yellow-300">"https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)"</span> -o /usr/local/bin/docker-compose<br>
+chmod +x /usr/local/bin/docker-compose<br><br>
+
+<span class="text-green-400"># Install Git</span><br>
+yum install -y git<br><br>
+
+<span class="text-green-400"># Install Go</span><br>
+wget <span class="text-yellow-300">https://go.dev/dl/go1.21.0.linux-amd64.tar.gz</span><br>
+tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz<br>
+<span class="text-blue-400">echo</span> <span class="text-yellow-300">'export PATH=$PATH:/usr/local/go/bin'</span> >> /etc/profile<br>
+<span class="text-blue-400">export</span> PATH=<span class="text-yellow-300">$PATH</span>:/usr/local/go/bin<br><br>
+
+<span class="text-green-400"># Install CloudWatch agent</span><br>
+wget <span class="text-yellow-300">https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm</span><br>
+rpm -U ./amazon-cloudwatch-agent.rpm<br><br>
+
+<span class="text-green-400"># Create application directory</span><br>
+mkdir -p /opt/currency-converter<br>
+<span class="text-blue-400">cd</span> /opt/currency-converter<br><br>
+
+<span class="text-green-400"># Clone application code</span><br>
+git clone <span class="text-yellow-300">${github_repo}</span> .<br><br>
+
+<span class="text-green-400"># Create environment file</span><br>
+cat &lt;&lt; <span class="text-yellow-300">EOF</span> &gt; .env<br>
+PORT=8080<br>
+EXCHANGE_API_KEY=<span class="text-yellow-300">${exchange_api_key}</span><br>
+ENVIRONMENT=production<br>
+<span class="text-yellow-300">EOF</span><br><br>
+
+<span class="text-green-400"># Build and run application with Docker</span><br>
+docker build -t currency-converter .<br>
+docker run -d \<br>
+&nbsp;&nbsp;--name currency-converter \<br>
+&nbsp;&nbsp;-p 80:8080 \<br>
+&nbsp;&nbsp;--env-file .env \<br>
+&nbsp;&nbsp;--restart unless-stopped \<br>
+&nbsp;&nbsp;currency-converter<br><br>
+
+<span class="text-green-400"># Configure CloudWatch agent</span><br>
+cat &lt;&lt; <span class="text-yellow-300">EOF</span> &gt; /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json<br>
+{<br>
+&nbsp;&nbsp;<span class="text-yellow-300">"logs"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"logs_collected"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"files"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"collect_list"</span>: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"file_path"</span>: <span class="text-yellow-300">"/var/log/messages"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"log_group_name"</span>: <span class="text-yellow-300">"currency-converter-system"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-300">"log_stream_name"</span>: <span class="text-yellow-300">"{instance_id}/system"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
